@@ -3,10 +3,10 @@ import type { StockTicker } from '../types/stock';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import { useStockData } from '../hooks/useStockData';
 import { SearchBar } from './SearchBar';
-import { StockCard } from './StockCard';
 import { LoadingState } from './LoadingState';
 import { EmptyState } from './EmptyState';
 import { StockSidebar } from './StockSidebar';
+import { StockCard } from './StockCard';
 
 export const StockList = () => {
   const [searchQuery, setSearchQuery] = useState('');
