@@ -1,0 +1,49 @@
+name: Pull requests continues integration
+on:
+  pull_request:
+   branches:
+     - master
+     - dev
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  CHART_NAME                     : stocks
+  BASE_BRANCH                    : ${{ github.event.pull_request.base.ref }}
+jobs:
+  run-Linting-and-vulnerabilities-checks:
+    name: Validate Code & Check vulnerabilities
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref == 'master' || github.event.pull_request.base.ref == 'dev'
+    steps:
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+     # Cache YARN Depandencies
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # yarn cache files
+          path: ~/.yarn
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      # Install YARN Depandencies
+      - name: Install YARN Depandencies
+        run: |-
+          yarn
+
+      # Validate
+      - name: Code style check
+        run: |-
+            yarn run check:all
+
+    
