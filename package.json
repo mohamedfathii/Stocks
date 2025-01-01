@@ -72,7 +72,6 @@
     "check:prettier": "prettier --check 'src/**/*.{ts,tsx,html,js,json,jsx}'",
     "check:lint-staged": "lint-staged"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
