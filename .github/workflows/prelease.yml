@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
   release:
@@ -22,4 +22,4 @@ jobs:
       run: yarn install
 
     - name: Semantic Release
-      run:  npx semantic-release --branches main
+      run:  npx semantic-release --branches test
