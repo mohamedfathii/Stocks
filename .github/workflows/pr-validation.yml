@@ -2,7 +2,7 @@ name: Pull requests continues integration
 on:
   pull_request:
    branches:
-     - master
+     - main
      - dev
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
