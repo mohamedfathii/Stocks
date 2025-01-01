@@ -72,12 +72,7 @@
     "check:prettier": "prettier --check 'src/**/*.{ts,tsx,html,js,json,jsx}'",
     "check:lint-staged": "lint-staged"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
